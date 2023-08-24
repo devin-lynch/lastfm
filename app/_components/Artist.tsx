@@ -1,6 +1,8 @@
 'use client';
 
-export default function Artist({ artist }) {
+import Artists from '../_interfaces/Artists.interface';
+
+export default function Artist({ artist }: { artist: Artists }) {
   return (
     <div className="mb-8 text-center">
       <p>{artist.name}</p>
