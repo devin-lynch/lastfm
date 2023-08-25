@@ -7,7 +7,7 @@ export default function Home() {
   const [artists, setArtists] = useState([]);
 
   const fetchArtists = async () => {
-    const response = await fetch('http://localhost:3001/api/get-artists', {
+    const response = await fetch('http://localhost:3000/api/get-artists', {
       method: 'POST',
       body: JSON.stringify({
         artist: 'Hop Along',
