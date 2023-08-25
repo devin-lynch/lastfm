@@ -18,7 +18,7 @@ export default function Home() {
     }
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.ChangeEvent<any>) => {
     try {
       e.preventDefault();
       const response = await fetch('http://localhost:3000/api/get-artists', {
@@ -34,8 +34,6 @@ export default function Home() {
       console.log(error);
     }
   };
-
-  console.log(artistSearch);
 
   return (
     <div>

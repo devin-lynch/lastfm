@@ -5,8 +5,8 @@ export default interface Artists {
   listeners: string;
   image: {
     [key: number]: {
-      ["#text"]: string;
       size: string;
+      ["#text"]: string;
     }
   }
 }
