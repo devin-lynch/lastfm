@@ -1,12 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Artist from './_components/Artist';
 import Form from './_components/Form';
 
+type SetArtistSearchType = React.Dispatch<React.SetStateAction<string>>; // temp fix
+
 export default function Home() {
   const [artists, setArtists] = useState([]);
-  const [artistSearch, setArtistSearch] = useState('');
+  const [artistSearch, setArtistSearch]: [string, SetArtistSearchType] =
+    useState('');
 
   const displayArtists = artists.map((artist, i) => {
     if (artists) {

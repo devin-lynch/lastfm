@@ -6,7 +6,7 @@ import Album from '@/app/_components/Album';
 
 export default function Page({ params }: { params: { mbid: number } }) {
   const [artist, setArtist] = useState<Artist>();
-  const [artistAlbums, setArtistAlbums] = useState();
+  const [artistAlbums, setArtistAlbums] = useState([]);
 
   const fetchArtist = async () => {
     try {
@@ -70,7 +70,7 @@ export default function Page({ params }: { params: { mbid: number } }) {
   const displayAlbums = artistAlbums.map((album, i) => {
     if (artistAlbums) {
       return (
-        <div key={i}>
+        <div key={i} className="flex">
           <Album album={album} />
         </div>
       );
