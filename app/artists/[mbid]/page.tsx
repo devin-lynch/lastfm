@@ -5,6 +5,7 @@ import Artist from '@/app/_interfaces/Artist.interface';
 
 export default function Page({ params }: { params: { mbid: number } }) {
   const [artist, setArtist] = useState<Artist>();
+  const [artistAlbums, setArtistAlbums] = useState();
 
   const fetchArtist = async () => {
     try {
@@ -15,7 +16,7 @@ export default function Page({ params }: { params: { mbid: number } }) {
         }),
       });
       const data = await response.json();
-      console.log(data);
+      console.log('ARTIST: ', data);
       return data;
     } catch (error) {
       console.log(error);
@@ -30,6 +31,36 @@ export default function Page({ params }: { params: { mbid: number } }) {
   useEffect(() => {
     buildArtist();
   }, []);
+
+  const fetchArtistAlbums = async () => {
+    if (artist) {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/get-artist-albums`,
+          {
+            method: 'POST',
+            body: JSON.stringify({
+              artist: artist.name,
+            }),
+          }
+        );
+        const data = await response.json();
+        console.log('ARTIST ALBUMS: ', data);
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const buildArtistAlbums = async () => {
+    let builtArtistAlbums = await fetchArtistAlbums();
+    setArtistAlbums(builtArtistAlbums);
+  };
+
+  useEffect(() => {
+    buildArtistAlbums();
+  }, [artist]);
 
   const displayArtistInfo = artist ? (
     <div className="text-center mt-8">
