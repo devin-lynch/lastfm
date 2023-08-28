@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Artist from '@/app/_interfaces/Artist.interface';
+import Album from '@/app/_components/Album';
 
 export default function Page({ params }: { params: { mbid: number } }) {
   const [artist, setArtist] = useState<Artist>();
@@ -62,6 +63,20 @@ export default function Page({ params }: { params: { mbid: number } }) {
     buildArtistAlbums();
   }, [artist]);
 
+  if (!artistAlbums) {
+    return <p>Loading...</p>;
+  }
+
+  const displayAlbums = artistAlbums.map((album, i) => {
+    if (artistAlbums) {
+      return (
+        <div key={i}>
+          <Album album={album} />
+        </div>
+      );
+    }
+  });
+
   const displayArtistInfo = artist ? (
     <div className="text-center mt-8">
       <a href={artist.url} className="text-4xl" target="_blank">
@@ -73,5 +88,10 @@ export default function Page({ params }: { params: { mbid: number } }) {
     </div>
   ) : null;
 
-  return <div>{displayArtistInfo}</div>;
+  return (
+    <div>
+      {displayArtistInfo}
+      {artistAlbums ? displayAlbums : null}
+    </div>
+  );
 }
