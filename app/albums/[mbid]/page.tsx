@@ -31,9 +31,19 @@ export default function Page({ params }: { params: { mbid: number } }) {
     buildAlbum();
   }, []);
 
-  return (
-    <div>
-      <p>Album</p>
+  const displayAlbumInfo = album ? (
+    <div className="text-center mt-8">
+      <a href={album.url}>
+        <div className="flex justify-center">
+          <img src={album.image[3]['#text']} alt={album.name} />
+        </div>
+      </a>
+      <p className="mt-4 text-4xl">{album.name}</p>
+      <p className="mt-4">{album.listeners} listeners</p>
+      <p>{album.playcount} plays</p>
+      <p className="mt-4">{album.wiki.content}</p>
     </div>
-  );
+  ) : null;
+
+  return <div>{displayAlbumInfo}</div>;
 }
