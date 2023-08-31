@@ -70,7 +70,7 @@ export default function Page({ params }: { params: { mbid: number } }) {
   const displayAlbums = artistAlbums.map((album, i) => {
     if (artistAlbums) {
       return (
-        <div key={i} className="flex">
+        <div key={i}>
           <Album album={album} />
         </div>
       );
@@ -91,7 +91,9 @@ export default function Page({ params }: { params: { mbid: number } }) {
   return (
     <div>
       {displayArtistInfo}
-      {artistAlbums ? displayAlbums : null}
+      <div className="flex justify-center">
+        <div>{artistAlbums ? displayAlbums : null}</div>
+      </div>
     </div>
   );
 }
