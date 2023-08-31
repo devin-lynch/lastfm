@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Album from '@/app/_interfaces/Album.interface';
 
 export default function Page({ params }: { params: { mbid: number } }) {
-  const [album, setAlbum] = useState();
+  const [album, setAlbum] = useState<Album>();
 
   const fetchAlbum = async () => {
     try {

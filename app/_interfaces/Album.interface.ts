@@ -1,17 +1,35 @@
 export default interface Album {
-  artist: {
-    mbid: string;
-    name: string;
-    url: string;
-  }
+  artist: string;
   image: {
     [key: number]: {
       size: string;
       ["#text"]: string;
     }
   }
-  mbid: string;
+  listeners: string;
   name: string;
-  playcount: number;
+  playcount: string;
+  tags: {
+    tag: {
+      [key: number]: {
+        url: string;
+        name: string;
+      }
+    }
+  }
+  tracks: {
+    track: {
+      [key: number]: {
+        duration: number;
+        name: string;
+        url: string;
+      }
+    }
+  }
   url: string;
+  wiki: {
+    content: string;
+    published: string;
+    summary: string;
+  }
 }

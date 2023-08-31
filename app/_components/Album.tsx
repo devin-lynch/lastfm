@@ -1,8 +1,8 @@
 'use client';
 
-import Album from '../_interfaces/Album.interface';
+import Albums from '../_interfaces/Albums.interface';
 
-export default function Album({ album }: { album: Album }) {
+export default function Album({ album }: { album: Albums }) {
   return (
     <a href={`/albums/${album.mbid}`}>
       <div>
