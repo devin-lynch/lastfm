@@ -4,12 +4,11 @@ import React, { useState, useEffect } from 'react';
 import Artist from './_components/Artist';
 import Form from './_components/Form';
 
-type SetArtistSearchType = React.Dispatch<React.SetStateAction<string>>; // temp fix
-
 export default function Home() {
   const [artists, setArtists] = useState([]);
-  const [artistSearch, setArtistSearch]: [string, SetArtistSearchType] =
-    useState('');
+  const [artistSearch, setArtistSearch] = useState('');
+  const [user, setUser] = useState();
+  const [userSearch, setUserSearch] = useState('');
 
   const displayArtists = artists.map((artist, i) => {
     if (artists) {
@@ -21,10 +20,10 @@ export default function Home() {
     }
   });
 
-  const handleSubmit = async (e: React.ChangeEvent<any>) => {
+  const handleArtistSubmit = async (e: React.ChangeEvent<any>) => {
     try {
       e.preventDefault();
-      const response = await fetch('http://localhost:3000/api/get-artists', {
+      const response = await fetch('api/get-artists', {
         method: 'POST',
         body: JSON.stringify({
           artist: artistSearch,
@@ -38,9 +37,32 @@ export default function Home() {
     }
   };
 
+  const handleUserSubmit = async (e: React.ChangeEvent<any>) => {
+    try {
+      e.preventDefault();
+      console.log(userSearch);
+      const response = await fetch('api/get-user-artists', {
+        method: 'POST',
+        body: JSON.stringify({
+          user: userSearch,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      setUser(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
-      <Form setArtistSearch={setArtistSearch} handleSubmit={handleSubmit} />
+      <Form
+        setArtistSearch={setArtistSearch}
+        handleArtistSubmit={handleArtistSubmit}
+        setUserSearch={setUserSearch}
+        handleUserSubmit={handleUserSubmit}
+      />
       {displayArtists}
     </div>
   );
