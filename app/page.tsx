@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Artist from './_components/Artist';
 import Form from './_components/Form';
+import { UserContext } from './_context/UserContext';
 
 export default function Home() {
   const [artists, setArtists] = useState([]);
