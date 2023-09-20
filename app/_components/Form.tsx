@@ -20,7 +20,7 @@ export default function Form({
 }: ChildProps) {
   return (
     <div className="text-center mt-8">
-      {/* <form>
+      <form>
         <input
           type="text"
           className="search-text"
@@ -28,7 +28,7 @@ export default function Form({
           onChange={(e) => setArtistSearch(e.target.value)}
         />
         <button onClick={(e) => handleArtistSubmit(e)}>Search</button>
-      </form> */}
+      </form>
 
       <input
         type="text"

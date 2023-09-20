@@ -8,7 +8,12 @@ export async function POST(request: NextRequest) {
     const apiKey = process.env.API_KEY;
     const response = await fetch(`http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${user}&api_key=${apiKey}&format=json`)
     const data = await response.json()
-    return data.topartists.artist
+    console.log(data)
+    if (data.error) {
+      return 'no data'
+    } else {
+      return data.topartists.artist
+    }
   }
 
   const retrievedUserArtists = await fetchUserArtists()

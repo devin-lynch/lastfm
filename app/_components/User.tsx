@@ -1,26 +1,26 @@
-import Link from 'next/link';
-
 export default function User({ username, topArtists }) {
   let displayTopArtists;
 
   if (topArtists) {
     displayTopArtists = topArtists.map((artist, i) => {
       return (
-        <Link href={artist.url} key={i}>
+        <a target="_blank" href={artist.url} key={i}>
           <div className="mb-8 text-center">
             <p className="text-2xl">{artist.name}</p>
             <p>{artist.playcount} scrobbles</p>
           </div>
-        </Link>
+        </a>
       );
     });
+  } else {
+    return <p className="mt-8 text-center text-4xl">loading...</p>;
   }
 
   return (
     <div>
-      <Link href={`https://last.fm/user/${username}`}>
+      <a target="_blank" href={`https://last.fm/user/${username}`}>
         <p className="text-center text-4xl mb-8 mt-4">{username}</p>
-      </Link>
+      </a>
       <div className="text-center">
         <p className="mb-6 text-xl">Top Artists</p>
         {displayTopArtists}

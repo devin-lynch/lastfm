@@ -5,6 +5,7 @@ import User from '@/app/_components/User';
 
 export default function Page({ params }: { params: { username: string } }) {
   const [userTopArtists, setUserTopArtists] = useState();
+  const [userExists, setUserExists] = useState(true); // default assumption will be that the user exists until we get a response from the API that demonstrates otherwise
 
   const getUserTopArtists = async () => {
     try {
@@ -25,9 +26,13 @@ export default function Page({ params }: { params: { username: string } }) {
   };
 
   const buildUserTopArtists = async () => {
-    let builtUserTopArtists = await getUserTopArtists();
-    console.log(builtUserTopArtists);
-    setUserTopArtists(builtUserTopArtists);
+    let apiResponse = await getUserTopArtists();
+    console.log(apiResponse);
+    if (apiResponse === 'no data') {
+      setUserExists(false);
+    } else {
+      setUserTopArtists(apiResponse);
+    }
   };
 
   useEffect(() => {
@@ -36,7 +41,11 @@ export default function Page({ params }: { params: { username: string } }) {
 
   return (
     <div>
-      <User username={params.username} topArtists={userTopArtists} />
+      {userExists ? (
+        <User username={params.username} topArtists={userTopArtists} />
+      ) : (
+        <p>user not found</p>
+      )}
     </div>
   );
 }
