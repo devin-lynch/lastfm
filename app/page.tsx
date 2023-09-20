@@ -38,23 +38,23 @@ export default function Home() {
     }
   };
 
-  const handleUserSubmit = async (e: React.ChangeEvent<any>) => {
-    try {
-      e.preventDefault();
-      console.log(userSearch);
-      const response = await fetch('api/get-user-artists', {
-        method: 'POST',
-        body: JSON.stringify({
-          user: userSearch,
-        }),
-      });
-      const data = await response.json();
-      console.log(data);
-      setUser(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleUserSubmit = async (e: React.ChangeEvent<any>) => {
+  //   try {
+  //     e.preventDefault();
+  //     console.log(userSearch);
+  //     const response = await fetch('api/get-user-artists', {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         user: userSearch,
+  //       }),
+  //     });
+  //     const data = await response.json();
+  //     console.log(data);
+  //     setUser(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div>
@@ -62,7 +62,8 @@ export default function Home() {
         setArtistSearch={setArtistSearch}
         handleArtistSubmit={handleArtistSubmit}
         setUserSearch={setUserSearch}
-        handleUserSubmit={handleUserSubmit}
+        // handleUserSubmit={handleUserSubmit}
+        userSearch={userSearch}
       />
       {displayArtists}
     </div>

@@ -8,6 +8,7 @@ interface ChildProps {
   handleArtistSubmit: any; // temp fix
   setUserSearch: SetUserSearchType;
   handleUserSubmit: any; // temp fix
+  userSearch: string;
 }
 
 export default function Form({
@@ -15,10 +16,11 @@ export default function Form({
   handleArtistSubmit,
   setUserSearch,
   handleUserSubmit,
+  userSearch,
 }: ChildProps) {
   return (
     <div className="text-center mt-8">
-      <form>
+      {/* <form>
         <input
           type="text"
           className="search-text"
@@ -26,17 +28,20 @@ export default function Form({
           onChange={(e) => setArtistSearch(e.target.value)}
         />
         <button onClick={(e) => handleArtistSubmit(e)}>Search</button>
-      </form>
+      </form> */}
 
-      <form>
-        <input
-          type="text"
-          className="search-text"
-          placeholder="search users"
-          onChange={(e) => setUserSearch(e.target.value)}
-        />
-        <button onClick={(e) => handleUserSubmit(e)}>Search</button>
-      </form>
+      <input
+        type="text"
+        className="search-text"
+        placeholder="look up a user"
+        onChange={(e) => setUserSearch(e.target.value)}
+      />
+      <button
+        type="submit"
+        onClick={() => (window.location.href = `users/${userSearch}`)}
+      >
+        Search
+      </button>
     </div>
   );
 }
