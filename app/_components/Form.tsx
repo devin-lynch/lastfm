@@ -7,7 +7,7 @@ interface ChildProps {
   setArtistSearch: SetArtistSearchType;
   handleArtistSubmit: any; // temp fix
   setUserSearch: SetUserSearchType;
-  handleUserSubmit: any; // temp fix
+  // handleUserSubmit: any; // temp fix
   userSearch: string;
 }
 
@@ -15,7 +15,7 @@ export default function Form({
   setArtistSearch,
   handleArtistSubmit,
   setUserSearch,
-  handleUserSubmit,
+  // handleUserSubmit,
   userSearch,
 }: ChildProps) {
   return (
