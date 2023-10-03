@@ -11,6 +11,7 @@ export default function Home() {
   const [user, setUser] = useState();
   const [userSearch, setUserSearch] = useState('');
   const [searchType, setSearchType] = useState('artists');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const displayArtists = artists.map((artist, i) => {
     if (artists) {
@@ -30,7 +31,7 @@ export default function Home() {
         const response = await fetch('api/get-artists', {
           method: 'POST',
           body: JSON.stringify({
-            artist: artistSearch,
+            artist: searchTerm,
           }),
         });
         const data = await response.json();
@@ -38,6 +39,7 @@ export default function Home() {
         setArtists(data);
       } else if (searchType === 'user') {
         console.log('Searching for user');
+        window.location.href = `users/${searchTerm}`;
       } else if (searchType === 'albums') {
         console.log('Searching albums');
       }
@@ -61,10 +63,10 @@ export default function Home() {
           type="text"
           className="search-text"
           placeholder="search artists"
-          onChange={(e) => setArtistSearch(e.target.value)}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
-        {/* <button onClick={(e) => handleArtistSubmit(e)}>Search</button> */}
         <button onClick={(e) => handleSubmit(e)}>Search</button>
+
         <Dropdown
           searchType={searchType}
           handleSearchTypeChange={handleSearchTypeChange}
