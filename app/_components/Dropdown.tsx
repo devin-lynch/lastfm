@@ -1,4 +1,10 @@
-export default function Dropdown() {
+export default function Dropdown({
+  searchType,
+  handleSearchTypeChange,
+}: {
+  searchType: string;
+  handleSearchTypeChange: any;
+}) {
   return (
     <div className="dropdown">
       <label htmlFor="searchType">Search via: </label>
@@ -6,8 +12,8 @@ export default function Dropdown() {
       <select
         name="searchType"
         id="searchType"
-        value=""
-        onChange={(e) => e.target.value}
+        value={searchType}
+        onChange={(e) => handleSearchTypeChange(e.target.value)}
       >
         <option value="artists">Artists</option>
         <option value="user">User</option>

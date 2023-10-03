@@ -27,5 +27,13 @@ body {
 }
 
 .search-text {
-  color: black;
+  color: black
+}
+
+.dropdown {
+  color: black
+}
+
+label {
+  color: white
 }

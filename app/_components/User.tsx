@@ -4,7 +4,6 @@ export default function User({ username, topArtists }) {
   if (topArtists) {
     displayTopArtists = topArtists.map((artist, i) => {
       return (
-        // <a target="_blank" href={artist.url} key={i}>
         <a
           target="_blank"
           href={`https://last.fm/user/${username}/library/music/${artist.name}`}

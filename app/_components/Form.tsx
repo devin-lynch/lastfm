@@ -20,15 +20,14 @@ export default function Form({
 }: ChildProps) {
   return (
     <div className="text-center mt-8">
-      <form>
-        <input
-          type="text"
-          className="search-text"
-          placeholder="search artists"
-          onChange={(e) => setArtistSearch(e.target.value)}
-        />
-        <button onClick={(e) => handleArtistSubmit(e)}>Search</button>
-      </form>
+      {/* <input
+        type="text"
+        className="search-text"
+        placeholder="search artists"
+        onChange={(e) => setArtistSearch(e.target.value)}
+      />
+      <button onClick={(e) => handleArtistSubmit(e)}>Search</button> */}
+      {/* <button onClick={(e) => handleSubmit(e)}>Search</button> */}
 
       <input
         type="text"
