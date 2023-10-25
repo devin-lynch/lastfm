@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Artist from './_components/Artist';
+import Album from './_components/Album';
 import Dropdown from './_components/Dropdown';
 import { UserContext } from './_context/UserContext';
 
@@ -9,7 +10,7 @@ export default function Home() {
   const [artists, setArtists] = useState([]);
   const [artistSearch, setArtistSearch] = useState('');
   const [user, setUser] = useState();
-  const [albums, setAlbums] = useState();
+  const [albums, setAlbums] = useState([]);
   const [userSearch, setUserSearch] = useState('');
   const [searchType, setSearchType] = useState('artists');
   const [searchTerm, setSearchTerm] = useState('');
@@ -19,6 +20,16 @@ export default function Home() {
       return (
         <div key={i}>
           <Artist artist={artist} />
+        </div>
+      );
+    }
+  });
+
+  const displayAlbums = albums.map((album, i) => {
+    if (albums) {
+      return (
+        <div key={i}>
+          <Album album={album} />
         </div>
       );
     }
@@ -51,6 +62,7 @@ export default function Home() {
         });
         const data = await response.json();
         console.log(data);
+        setArtists([]);
         setAlbums(data);
       }
     } catch (error) {
@@ -84,6 +96,7 @@ export default function Home() {
       </div>
 
       {displayArtists}
+      {displayAlbums}
     </div>
   );
 }

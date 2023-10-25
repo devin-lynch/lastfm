@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     const apiKey = process.env.API_KEY;
     const response = await fetch(`http://ws.audioscrobbler.com/2.0/?method=album.search&album=${album}&api_key=${apiKey}&format=json`)
     const data = await response.json()
-    return data
+    return data.results.albummatches.album
   }
 
   const retrievedAlbums = await fetchAlbums()
