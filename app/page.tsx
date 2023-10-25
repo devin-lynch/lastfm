@@ -84,7 +84,7 @@ export default function Home() {
         <input
           type="text"
           className="search-text"
-          placeholder="search artists"
+          placeholder={`search ${searchType}`}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <button onClick={(e) => handleSubmit(e)}>Search</button>
