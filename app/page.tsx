@@ -9,6 +9,7 @@ export default function Home() {
   const [artists, setArtists] = useState([]);
   const [artistSearch, setArtistSearch] = useState('');
   const [user, setUser] = useState();
+  const [albums, setAlbums] = useState();
   const [userSearch, setUserSearch] = useState('');
   const [searchType, setSearchType] = useState('artists');
   const [searchTerm, setSearchTerm] = useState('');
@@ -42,6 +43,15 @@ export default function Home() {
         window.location.href = `users/${searchTerm}`;
       } else if (searchType === 'albums') {
         console.log('Searching albums');
+        const response = await fetch('api/get-albums', {
+          method: 'POST',
+          body: JSON.stringify({
+            album: searchTerm,
+          }),
+        });
+        const data = await response.json();
+        console.log(data);
+        setAlbums(data);
       }
     } catch (error) {
       console.log(error);
